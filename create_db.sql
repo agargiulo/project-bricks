@@ -8,7 +8,6 @@ Author              Anthony Gargiulo <agargiulo@anthonygargiulo.info>
 */
 
 
-BEGIN;
 DROP DATABASE "bricks";
 
 /*
@@ -21,9 +20,10 @@ CREATE DATABASE "bricks" ENCODING 'UTF8';
 
 \connect bricks;
 
+BEGIN;
 CREATE TABLE "public"."projects"(
 "name" TEXT NOT NULL,
-"description" TEXT NOT NULL DEFAULT this is a lovely project, but its owner forgot to give it a description,
+"description" TEXT NOT NULL DEFAULT 'this is a lovely project, but its owner forgot to give it a description',
 "date_completed" DATE NOT NULL DEFAULT current_date,
 "lead" TEXT NOT NULL,
 CONSTRAINT "project_name_pkey" PRIMARY KEY ("name")
@@ -61,4 +61,10 @@ ALTER TABLE "public"."projects" ADD CONSTRAINT "fk_projects_lead_username" FOREI
 ALTER TABLE "public"."contributors" ADD CONSTRAINT "fk_contributors_project_name" FOREIGN KEY ("project") REFERENCES "public"."projects"("name") MATCH SIMPLE ON UPDATE RESTRICT ON DELETE RESTRICT;
 
 ALTER TABLE "public"."contributors" ADD CONSTRAINT "fk_contributors_username_username" FOREIGN KEY ("username") REFERENCES "public"."users"("username") MATCH SIMPLE ON UPDATE RESTRICT ON DELETE RESTRICT;
+
+/* Make sure things are owned correctly */
+ALTER DATABASE bricks OWNER TO bricks;
+ALTER TABLE projects OWNER TO bricks;
+ALTER TABLE users OWNER TO bricks;
+ALTER TABLE contributors OWNER TO bricks;
 COMMIT;
