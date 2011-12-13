@@ -18,7 +18,7 @@ If any of the objects already exists in the database, the psql client program
 
 CREATE DATABASE "bricks" ENCODING 'UTF8';
 
-\connect bricks;
+\connect bricks bricks;
 
 BEGIN;
 CREATE TABLE "public"."users"(
@@ -65,10 +65,11 @@ ALTER TABLE "public"."projects" ADD CONSTRAINT "fk_projects_committee_name" FORE
 
 ALTER TABLE "public"."participants" ADD CONSTRAINT "fk_participantsRelationship16" FOREIGN KEY ("username") REFERENCES "public"."users"("username") MATCH SIMPLE ON UPDATE RESTRICT ON DELETE RESTRICT;
 
-/* Make sure things are owned correctly */
+/* Make sure things are owned correctly
 ALTER DATABASE bricks OWNER TO bricks;
 ALTER TABLE projects OWNER TO bricks;
 ALTER TABLE users OWNER TO bricks;
 ALTER TABLE participants OWNER TO bricks;
 ALTER TABLE committees OWNER TO bricks;
+*/
 COMMIT;
