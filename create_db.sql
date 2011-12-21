@@ -48,7 +48,9 @@ CREATE TABLE "public"."participants"(
 "project_name" TEXT NOT NULL
 )
 WITHOUT OIDS;
+COMMIT;
 
+BEGIN;
 COMMENT ON TABLE "projects" IS 'All of the project bricks';
 
 COMMENT ON COLUMN "projects"."name" IS 'name of the project';
@@ -57,19 +59,15 @@ COMMENT ON COLUMN "projects"."description" IS 'the description of the project';
 
 COMMENT ON COLUMN "projects"."date_completed" IS 'the date on which the project was completed, defaults to the current date';
 
+COMMIT;
+
+BEGIN;
 ALTER TABLE "public"."participants" ADD CONSTRAINT "participant_name_project_key" UNIQUE ("username","project_name");
 
 ALTER TABLE "public"."projects" ADD CONSTRAINT "fk_projects_lead_username" FOREIGN KEY ("lead") REFERENCES "public"."users"("username") MATCH SIMPLE ON UPDATE RESTRICT ON DELETE RESTRICT;
 
 ALTER TABLE "public"."projects" ADD CONSTRAINT "fk_projects_committee_name" FOREIGN KEY ("committee_name") REFERENCES "public"."committees"("committee_name") MATCH SIMPLE ON UPDATE RESTRICT ON DELETE RESTRICT;
 
-ALTER TABLE "public"."participants" ADD CONSTRAINT "fk_participantsRelationship16" FOREIGN KEY ("username") REFERENCES "public"."users"("username") MATCH SIMPLE ON UPDATE RESTRICT ON DELETE RESTRICT;
+ALTER TABLE "public"."participants" ADD CONSTRAINT "fk_projects_participant_username" FOREIGN KEY ("username") REFERENCES "public"."users"("username") MATCH SIMPLE ON UPDATE RESTRICT ON DELETE RESTRICT;
 
-/* Make sure things are owned correctly
-ALTER DATABASE bricks OWNER TO bricks;
-ALTER TABLE projects OWNER TO bricks;
-ALTER TABLE users OWNER TO bricks;
-ALTER TABLE participants OWNER TO bricks;
-ALTER TABLE committees OWNER TO bricks;
-*/
 COMMIT;
