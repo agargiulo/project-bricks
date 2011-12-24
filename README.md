@@ -45,4 +45,4 @@ Both the loadFactory and modelFactory allow you to load a model or other object 
 Views
 ---
 
-Views are really simple. These are simply PHP files that generate HTML. You can pass variables to models as well! To do that, use the: $this->load->view('view_name', array('var1' -> 'val')); function. The second parameter is an array map of values. The keys will be passed to the view as variables. So using the example above, if I pass in array('var1' => 'val1'), I would just use $var1 in my view file to access that variable.
+Views are really simple. These are simply PHP files that generate HTML. You can pass variables to models as well! To do that, use the: $this->load->view('view_name', array('var1' => 'val')); function. The second parameter is an array map of values. The keys will be passed to the view as variables. So using the example above, if I pass in array('var1' => 'val1'), I would just use $var1 in my view file to access that variable.
