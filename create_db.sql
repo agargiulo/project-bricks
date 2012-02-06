@@ -52,7 +52,16 @@ COMMENT ON COLUMN "projects"."name" IS 'name of the project';
 COMMENT ON COLUMN "projects"."description" IS 'the description of the project';
 
 COMMENT ON COLUMN "projects"."date_completed" IS 'the date on which the project was completed, defaults to the current date';
+COMMIT;
 
+BEGIN;
+COMMENT ON TABLE "users" IS 'Stores who worked on what project, and if were they in charge or not';
+
+COMMENT ON COLUMN "users"."username" IS 'their CSH username';
+
+COMMENT ON COLUMN "users"."project_name" IS 'the name of the project, as stored in the "public"."project" table';
+
+COMMENT ON COLUMN "users"."lead_dev" IS 'Was this person in charge of this project?';
 COMMIT;
 
 BEGIN;
