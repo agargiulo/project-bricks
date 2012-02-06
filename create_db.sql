@@ -36,7 +36,7 @@ WITHOUT OIDS;
 
 CREATE TABLE "public"."projects"(
 "name" TEXT NOT NULL,
-"description" TEXT NOT NULL DEFAULT 'this is a lovely project, but its owner forgot to give it a description',
+"description" TEXT NOT NULL DEFAULT 'This is a lovely project, but the owner forgot to give it a description.',
 "date_completed" DATE NOT NULL DEFAULT current_date,
 "committee_name" TEXT NOT NULL,
 CONSTRAINT "project_name_pkey" PRIMARY KEY ("name")
