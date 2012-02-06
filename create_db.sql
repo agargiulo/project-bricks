@@ -23,7 +23,8 @@ CREATE DATABASE "bricks" ENCODING 'UTF8';
 BEGIN;
 CREATE TABLE "public"."users"(
 "username" TEXT NOT NULL,
-CONSTRAINT "username_pkey" PRIMARY KEY ("username")
+"project_name" TEXT NOT NULL,
+"lead_dev" BOOL NOT NULL 
 )
 WITHOUT OIDS;
 
@@ -37,15 +38,8 @@ CREATE TABLE "public"."projects"(
 "name" TEXT NOT NULL,
 "description" TEXT NOT NULL DEFAULT 'this is a lovely project, but its owner forgot to give it a description',
 "date_completed" DATE NOT NULL DEFAULT current_date,
-"lead" TEXT NOT NULL,
 "committee_name" TEXT NOT NULL,
 CONSTRAINT "project_name_pkey" PRIMARY KEY ("name")
-)
-WITHOUT OIDS;
-
-CREATE TABLE "public"."participants"(
-"username" TEXT NOT NULL,
-"project_name" TEXT NOT NULL
 )
 WITHOUT OIDS;
 COMMIT;
@@ -62,12 +56,16 @@ COMMENT ON COLUMN "projects"."date_completed" IS 'the date on which the project 
 COMMIT;
 
 BEGIN;
-ALTER TABLE "public"."participants" ADD CONSTRAINT "participant_name_project_key" UNIQUE ("username","project_name");
+COMMENT ON TABLE "committees" IS 'All of the various committess, of both genuine and fictional origin';
 
-ALTER TABLE "public"."projects" ADD CONSTRAINT "fk_projects_lead_username" FOREIGN KEY ("lead") REFERENCES "public"."users"("username") MATCH SIMPLE ON UPDATE RESTRICT ON DELETE RESTRICT;
+COMMENT ON COLUMN "committees"."committee_name" IS 'Name of the committee';
+COMMIT;
+
+BEGIN;
+ALTER TABLE "public"."users" ADD CONSTRAINT "user_name_project_key" UNIQUE ("username","project_name");
 
 ALTER TABLE "public"."projects" ADD CONSTRAINT "fk_projects_committee_name" FOREIGN KEY ("committee_name") REFERENCES "public"."committees"("committee_name") MATCH SIMPLE ON UPDATE RESTRICT ON DELETE RESTRICT;
 
-ALTER TABLE "public"."participants" ADD CONSTRAINT "fk_projects_participant_username" FOREIGN KEY ("username") REFERENCES "public"."users"("username") MATCH SIMPLE ON UPDATE RESTRICT ON DELETE RESTRICT;
+ALTER TABLE "public"."users" ADD CONSTRAINT "fk_users_project_name" FOREIGN KEY ("project_name") REFERENCES "public"."projects"("name") MATCH SIMPLE ON UPDATE RESTRICT ON DELETE RESTRICT;
 
 COMMIT;
