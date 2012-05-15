@@ -39,8 +39,8 @@
             <div class="nav-collapse">
                 <ul class="nav">
                     <li><a href="index.php">Home</a></li>
-                    <li><a href="about.php">About</a></li>
-                    <li class="active"><a href="submit.php">New Brick</a></li>
+                    <li class="active"><a href="about.php">About</a></li>
+                    <li><a href="submit.php">New Brick</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
