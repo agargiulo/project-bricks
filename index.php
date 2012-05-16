@@ -20,7 +20,7 @@
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
     <![endif]-->
-    <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+    <script src="js/jquery-1.7.2.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <?php include "./functions.php";?>
 
