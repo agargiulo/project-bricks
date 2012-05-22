@@ -22,11 +22,15 @@
     <![endif]-->
     <script src="js/jquery-1.7.2.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <?php include "./functions.php";?>
 
 </head>
 
 <body>
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+require("./functions.php");
+?>
 
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
@@ -52,18 +56,19 @@
 <div class="container">
     <div class="row">
         <div class="span6 offset3">
-            <table class="table table-striped">
+            <table class="table table-bordered table-striped table-condensed">
                 <caption>Most Recent Bricks</caption>
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
+                        <th>Project Name</th>
                         <th>CSH Username</th>
+                        <th>Date Completed</th>
+                        <th>Committee</th>
+                        <th>Description</th>
                     </tr>
                 </thead>
                 <tbody>
-                <?php processRecentBricks();?>
+<?php processRecentBricks();?>
                 </tbody>
             </table>
         </div>
