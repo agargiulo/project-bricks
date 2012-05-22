@@ -1,0 +1,5 @@
+<?php
+DEFINE("DB_HOST", "db.example.com");
+DEFINE("DB_NAME", "bricks");
+DEFINE("DB_USER", "bricks");
+DEFINE("DB_PASS", "your_password");
