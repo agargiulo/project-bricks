@@ -1,5 +1,5 @@
 <?php
-DEFINE("DB_HOST", "db.example.com");
-DEFINE("DB_NAME", "bricks");
-DEFINE("DB_USER", "bricks");
-DEFINE("DB_PASS", "your_password");
+$DB_HOST = "db.example.com";
+$DB_NAME = "bricks";
+$DB_USER = "bricks";
+$DB_PASS = "y0ur_s3cure_p4ssword";
