@@ -1,5 +1,4 @@
 <?php
-
 function processRecentBricks()
 {
     $lineNo = 1;
@@ -8,6 +7,3 @@ function processRecentBricks()
     $username = $_SERVER['WEBAUTH_USER'];
     echo "<tr><td>$lineNo</td><td>$firstName</td><td>$lastName</td><td>$username</td></tr>";
 }
-
-
-?>
